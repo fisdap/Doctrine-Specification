@@ -5,11 +5,15 @@ It has been many changes since 0.2 and we refactored quite a lot. These are the 
 ## Changed interfaces
 
 The old `Specification` interface has been split up to two parts. We got a `Filter` with will modify the `SELECT` clause of
-the SQL query. We also got the `QueryModifier` interface the modifies the query (Limit, Order, Join etc). 
+the SQL query. We also got the `QueryModifier` interface the modifies the query (Limit, Order, Join etc). I a normal scenario you will not be creating objects implementing the Filter or QueryModifier directly. 
 
-The new `Specification` interface extends `Filter` and `QueryModifier`.
+The new `Specification` interface extends `Filter` and `QueryModifier`. 
 
-You have to update your specifications to comply with `QueryModifier` and/or `Expression`
+You have to update your specifications to comply with the new `Specification`. The easiest way of doing this is to extend `BaseSpecification`. You got 3 ways of using the `BaseSpecification`. 
+
+1. Return a Filter instance by overriding `BaseSpecification::getFilterInstance()`
+1. Return a QueryBuilder instance by overriding `BaseSpecification::getQueryModifierInstance()`
+1. Set a Specification to `BaseSpecification::$spec` in the constructor.
 
 
 ## BaseSpecification
