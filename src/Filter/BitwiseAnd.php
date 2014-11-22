@@ -6,6 +6,6 @@ class BitwiseAnd extends Comparison
 {
     public function __construct($field, $value, $dqlAlias = null)
     {
-        parent::__construct(self::BWA, $field, $value, $dqlAlias);
+        parent::__construct(self::BIT_AND, $field, $value, $dqlAlias);
     }
 }
