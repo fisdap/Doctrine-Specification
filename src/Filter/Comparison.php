@@ -20,12 +20,15 @@ class Comparison implements Filter
     const GT = '>';
     const GTE = '>=';
     const LIKE = 'LIKE';
+    const BIT_AND = 'BIT_AND';
+    const BIT_OR = 'BIT_OR';
 
     private static $operators = array(
         self::EQ, self::NEQ,
         self::LT, self::LTE,
         self::GT, self::GTE,
-        self::LIKE
+        self::LIKE, self::BIT_AND,
+        self::BIT_OR
     );
 
     /**

@@ -2,6 +2,9 @@
 
 namespace Happyr\DoctrineSpecification;
 
+use Happyr\DoctrineSpecification\Query\LeftJoin;
+use Happyr\DoctrineSpecification\Filter\BitwiseAnd;
+use Happyr\DoctrineSpecification\Filter\BitwiseOr;
 use Happyr\DoctrineSpecification\Filter\Filter;
 use Happyr\DoctrineSpecification\Filter\IsNotNull;
 use Happyr\DoctrineSpecification\Result\AsArray;
@@ -31,6 +34,11 @@ class Spec
     public static function join($field, $newAlias, $dqlAlias = null)
     {
         return new Join($field, $newAlias, $dqlAlias);
+    }
+
+    public static function leftJoin($field, $newAlias, $dqlAlias = null)
+    {
+        return new LeftJoin($field, $newAlias, $dqlAlias);
     }
 
     public static function asArray()
@@ -91,5 +99,15 @@ class Spec
     public static function like($field, $value, $format = Like::CONTAINS, $dqlAlias = null)
     {
         return new Like($field, $value, $format, $dqlAlias);
+    }
+
+    public static function bitwiseAnd($field, $value, $dqlAlias = null)
+    {
+        return new BitwiseAnd($field, $value, $dqlAlias);
+    }
+
+    public static function bitwiseOr($field, $value, $dqlAlias = null)
+    {
+        return new BitwiseOr($field, $value, $dqlAlias);
     }
 }
