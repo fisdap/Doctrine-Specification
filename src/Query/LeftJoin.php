@@ -7,7 +7,7 @@ use Happyr\DoctrineSpecification\Query\QueryModifier;
 /**
  * Class LeftJoin
  *
- * @package Fisdap\Data\Base\QuerySpecs\QueryModifiers
+ * @package Happyr\DoctrineSpecification\Query
  */
 class LeftJoin implements QueryModifier
 {
