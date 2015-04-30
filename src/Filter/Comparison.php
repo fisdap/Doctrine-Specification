@@ -33,21 +33,24 @@ class Comparison implements Filter
 
     /**
      * @var string field
-     *
      */
     protected $field;
 
     /**
      * @var string value
-     *
      */
     protected $value;
 
     /**
      * @var string dqlAlias
-     *
      */
     protected $dqlAlias;
+
+    /**
+     * @var string type
+     */
+    protected $type;
+
     /**
      * @var string
      */
@@ -60,10 +63,10 @@ class Comparison implements Filter
      * @param string $field
      * @param string $value
      * @param string $dqlAlias
+     * @param string $type
      *
-     * @throws InvalidArgumentException
      */
-    public function __construct($operator, $field, $value, $dqlAlias = null)
+    public function __construct($operator, $field, $value, $dqlAlias = null, $type = null)
     {
         if (!in_array($operator, self::$operators)) {
             throw new InvalidArgumentException(
@@ -78,6 +81,7 @@ class Comparison implements Filter
         $this->field = $field;
         $this->value = $value;
         $this->dqlAlias = $dqlAlias;
+        $this->type = $type;
     }
 
     /**
@@ -93,7 +97,7 @@ class Comparison implements Filter
         }
 
         $paramName = $this->getParameterName($qb);
-        $qb->setParameter($paramName, $this->value);
+        $qb->setParameter($paramName, $this->value, $this->type);
 
         return (string) new DoctrineComparison(
             sprintf('%s.%s', $dqlAlias, $this->field),
