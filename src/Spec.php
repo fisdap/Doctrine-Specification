@@ -66,34 +66,34 @@ class Spec
         return new In($field, $value, $dqlAlias);
     }
 
-    public static function eq($field, $value, $dqlAlias = null)
+    public static function eq($field, $value, $dqlAlias = null, $type = null)
     {
-        return new Comparison(Comparison::EQ, $field, $value, $dqlAlias);
+        return new Comparison(Comparison::EQ, $field, $value, $dqlAlias, $type);
     }
 
-    public static function neq($field, $value, $dqlAlias = null)
+    public static function neq($field, $value, $dqlAlias = null, $type = null)
     {
-        return new Comparison(Comparison::NEQ, $field, $value, $dqlAlias);
+        return new Comparison(Comparison::NEQ, $field, $value, $dqlAlias, $type);
     }
 
-    public static function lt($field, $value, $dqlAlias = null)
+    public static function lt($field, $value, $dqlAlias = null, $type = null)
     {
-        return new Comparison(Comparison::LT, $field, $value, $dqlAlias);
+        return new Comparison(Comparison::LT, $field, $value, $dqlAlias, $type);
     }
 
-    public static function lte($field, $value, $dqlAlias = null)
+    public static function lte($field, $value, $dqlAlias = null, $type = null)
     {
-        return new Comparison(Comparison::LTE, $field, $value, $dqlAlias);
+        return new Comparison(Comparison::LTE, $field, $value, $dqlAlias, $type);
     }
 
-    public static function gt($field, $value, $dqlAlias = null)
+    public static function gt($field, $value, $dqlAlias = null, $type = null)
     {
-        return new Comparison(Comparison::GT, $field, $value, $dqlAlias);
+        return new Comparison(Comparison::GT, $field, $value, $dqlAlias, $type);
     }
 
-    public static function gte($field, $value, $dqlAlias = null)
+    public static function gte($field, $value, $dqlAlias = null, $type = null)
     {
-        return new Comparison(Comparison::GTE, $field, $value, $dqlAlias);
+        return new Comparison(Comparison::GTE, $field, $value, $dqlAlias, $type);
     }
 
     public static function like($field, $value, $format = Like::CONTAINS, $dqlAlias = null)
