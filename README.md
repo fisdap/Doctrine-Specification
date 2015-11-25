@@ -1,4 +1,8 @@
 # Happyr Doctrine Specification
+[![Build Status](https://travis-ci.org/Happyr/Doctrine-Specification.svg?branch=master)](https://travis-ci.org/Happyr/Doctrine-Specification)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/44c425af-90f6-4c25-b789-4ece28b01a2b/mini.png)](https://insight.sensiolabs.com/projects/44c425af-90f6-4c25-b789-4ece28b01a2b)
+[![Latest Stable Version](https://poser.pugx.org/happyr/doctrine-specification/v/stable.svg)](https://packagist.org/packages/happyr/doctrine-specification)
+[![Monthly Downloads](https://poser.pugx.org/happyr/doctrine-specification/d/monthly.png)](https://packagist.org/packages/happyr/doctrine-specification)
 
 This library gives you a new way for writing queries. Using the [Specification pattern][wiki_spec_pattern] you will
 get small Specification classes that are highly reusable.
@@ -89,10 +93,9 @@ Yes, it looks pretty much the same. But the later is reusable. Say you want anot
 ``` php
 class AdvertsWeShouldClose extends BaseSpecification
 {
-    public function __construct($dqlAlias = null)
+    public function getSpec()
     {
-        parent::__construct($dqlAlias);
-        $this->spec = Spec::andX(
+        return Spec::andX(
             Spec::eq('ended', 0),
             Spec::orX(
                 Spec::lt('endDate', new \DateTime()),
@@ -103,22 +106,25 @@ class AdvertsWeShouldClose extends BaseSpecification
             )
         );
     }
-
-    // the support() function
 }
 
 class OwnedByCompany extends BaseSpecification
 {
+    private $companyId;
+
     public function __construct(Company $company, $dqlAlias = null)
     {
         parent::__construct($dqlAlias);
-        $this->spec = Spec::collection(
-            Spec::join('company', 'c'),
-            Spec::eq('id', $company->getId(), 'c')
-        );
+        $this->companyId = $company->getId();
     }
 
-    // the support() function
+    public function getSpec()
+    {
+        return Spec::andX(
+            Spec::join('company', 'c'),
+            Spec::eq('id', $this->companyId, 'c')
+        );
+    }
 }
 
 class SomeService

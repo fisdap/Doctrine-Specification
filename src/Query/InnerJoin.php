@@ -2,13 +2,13 @@
 
 namespace Happyr\DoctrineSpecification\Query;
 
-class LeftJoin extends AbstractJoin
+class InnerJoin extends AbstractJoin
 {
     /**
      * {@inheritdoc}
      */
     protected function getJoinType()
     {
-        return 'leftJoin';
+        return 'innerJoin';
     }
 }

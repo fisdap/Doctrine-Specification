@@ -2,6 +2,6 @@
 
 namespace Happyr\DoctrineSpecification\Exception;
 
-class LogicException extends \LogicException
+class NoResultException extends UnexpectedResultException
 {
 }

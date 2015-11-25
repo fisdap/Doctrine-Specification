@@ -7,7 +7,7 @@ use Doctrine\ORM\Query\Expr\Comparison as DoctrineComparison;
 use Happyr\DoctrineSpecification\Exception\InvalidArgumentException;
 
 /**
- * Comparison class
+ * Comparison class.
  *
  * This is used when you need to compare two values
  */
@@ -57,7 +57,7 @@ class Comparison implements Filter
     private $operator;
 
     /**
-     * Make sure the $field has a value equals to $value
+     * Make sure the $field has a value equals to $value.
      *
      * @param string $operator
      * @param string $field
@@ -65,6 +65,7 @@ class Comparison implements Filter
      * @param string $dqlAlias
      * @param string $type
      *
+     * @throws InvalidArgumentException
      */
     public function __construct($operator, $field, $value, $dqlAlias = null, $type = null)
     {
@@ -107,7 +108,7 @@ class Comparison implements Filter
     }
 
     /**
-     * Get a good unique parameter name
+     * Get a good unique parameter name.
      *
      * @param QueryBuilder $qb
      *

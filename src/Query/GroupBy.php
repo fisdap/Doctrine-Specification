@@ -4,17 +4,12 @@ namespace Happyr\DoctrineSpecification\Query;
 
 use Doctrine\ORM\QueryBuilder;
 
-class OrderBy implements QueryModifier
+class GroupBy implements QueryModifier
 {
     /**
-     * @var string field
+     * @var int limit
      */
     protected $field;
-
-    /**
-     * @var string order
-     */
-    protected $order;
 
     /**
      * @var string dqlAlias
@@ -22,14 +17,12 @@ class OrderBy implements QueryModifier
     protected $dqlAlias;
 
     /**
-     * @param string      $field
-     * @param string      $order
-     * @param string|null $dqlAlias
+     * @param string $field
+     * @param string $dqlAlias
      */
-    public function __construct($field, $order = 'ASC', $dqlAlias = null)
+    public function __construct($field,  $dqlAlias = null)
     {
         $this->field = $field;
-        $this->order = $order;
         $this->dqlAlias = $dqlAlias;
     }
 
@@ -42,7 +35,6 @@ class OrderBy implements QueryModifier
         if ($this->dqlAlias !== null) {
             $dqlAlias = $this->dqlAlias;
         }
-
-        $qb->addOrderBy(sprintf('%s.%s', $dqlAlias, $this->field), $this->order);
+        $qb->addGroupBy(sprintf('%s.%s', $dqlAlias, $this->field));
     }
 }

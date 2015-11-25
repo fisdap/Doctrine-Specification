@@ -4,26 +4,26 @@ namespace Happyr\DoctrineSpecification\Filter;
 
 use Doctrine\ORM\QueryBuilder;
 
-class IsNull implements Filter
+class InstanceOfX implements Filter
 {
-    /**
-     * @var string field
-     */
-    protected $field;
-
     /**
      * @var null|string dqlAlias
      */
     protected $dqlAlias;
 
     /**
-     * @param string      $field
+     * @var string value
+     */
+    protected $value;
+
+    /**
+     * @param string      $value
      * @param string|null $dqlAlias
      */
-    public function __construct($field, $dqlAlias = null)
+    public function __construct($value, $dqlAlias = null)
     {
-        $this->field = $field;
         $this->dqlAlias = $dqlAlias;
+        $this->value = $value;
     }
 
     /**
@@ -38,6 +38,6 @@ class IsNull implements Filter
             $dqlAlias = $this->dqlAlias;
         }
 
-        return (string) $qb->expr()->isNull(sprintf('%s.%s', $dqlAlias, $this->field));
+        return sprintf('%s INSTANCE OF %s', $dqlAlias, $this->value);
     }
 }
