@@ -11,7 +11,9 @@ use Happyr\DoctrineSpecification\Filter\IsNull;
 use Happyr\DoctrineSpecification\Filter\Like;
 use Happyr\DoctrineSpecification\Filter\BitwiseAnd;
 use Happyr\DoctrineSpecification\Filter\BitwiseOr;
+use Happyr\DoctrineSpecification\Logic\AndX;
 use Happyr\DoctrineSpecification\Logic\Not;
+use Happyr\DoctrineSpecification\Logic\OrX;
 use Happyr\DoctrineSpecification\Query\GroupBy;
 use Happyr\DoctrineSpecification\Query\InnerJoin;
 use Happyr\DoctrineSpecification\Query\Join;
@@ -35,6 +37,9 @@ class Spec
      * Logic
      */
 
+    /**
+     * @return AndX
+     */
     public static function andX()
     {
         $args = func_get_args();
@@ -43,6 +48,9 @@ class Spec
         return $reflection->newInstanceArgs($args);
     }
 
+    /**
+     * @return OrX
+     */
     public static function orX()
     {
         $args = func_get_args();
@@ -138,7 +146,7 @@ class Spec
         return new Not(new In($field, $value, $dqlAlias));
     }
 
-    public static function eq($field, $value, $dqlAlias = null)
+    public static function eq($field, $value, $dqlAlias = null, $type = null)
     {
         return new Comparison(Comparison::EQ, $field, $value, $dqlAlias, $type);
     }

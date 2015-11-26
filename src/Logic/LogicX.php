@@ -38,15 +38,6 @@ class LogicX implements Specification
     }
 
     /**
-     * @return $this
-     */
-    public function append()
-    {
-        $this->children = array_merge($this->children, func_get_args());
-        return $this;
-    }
-
-    /**
      * @param QueryBuilder $qb
      * @param string       $dqlAlias
      *
